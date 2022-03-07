@@ -24,6 +24,18 @@ namespace PlatformService.Data
             _context.Platforms.Add(plat);
         }
 
+        public void DeletePlataform(int id)
+        {
+            Platform plat =  _context.Platforms.Find(id);
+
+            if (plat == null)
+            {
+                throw new ArgumentNullException(nameof(plat));
+            }
+            
+            _context.Platforms.Remove(plat);
+        }
+
         public IEnumerable<Platform> GetAllPlatforms()
         {
             return _context.Platforms.ToList();
@@ -37,6 +49,11 @@ namespace PlatformService.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdatePlatform(Platform plat)
+        {
+            throw new NotImplementedException();
         }
     }
 }
